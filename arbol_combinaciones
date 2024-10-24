@@ -1,0 +1,140 @@
+digraph {
+	graph [rankdir=TB]
+	Raiz [label=Combinaciones]
+	a [label="Variable a"]
+	Raiz -> a
+	a_Estado_1 [label="0 -> 0" color=red]
+	a -> a_Estado_1
+	a_Estado_2 [label="0 -> 0" color=red]
+	a -> a_Estado_2
+	a_Estado_3 [label="0 -> 0" color=red]
+	a -> a_Estado_3
+	a_Estado_4 [label="0 -> 1" color=red]
+	a -> a_Estado_4
+	a_Estado_5 [label="0 -> 0" color=red]
+	a -> a_Estado_5
+	a_Estado_6 [label="0 -> 0" color=red]
+	a -> a_Estado_6
+	a_Estado_7 [label="0 -> 0" color=red]
+	a -> a_Estado_7
+	a_Estado_8 [label="0 -> 1" color=red]
+	a -> a_Estado_8
+	a_Estado_9 [label="1 -> 0" color=green]
+	a -> a_Estado_9
+	a_Estado_10 [label="1 -> 0" color=green]
+	a -> a_Estado_10
+	a_Estado_11 [label="1 -> 0" color=green]
+	a -> a_Estado_11
+	a_Estado_12 [label="1 -> 1" color=green]
+	a -> a_Estado_12
+	a_Estado_13 [label="1 -> 1" color=green]
+	a -> a_Estado_13
+	a_Estado_14 [label="1 -> 1" color=green]
+	a -> a_Estado_14
+	a_Estado_15 [label="1 -> 1" color=green]
+	a -> a_Estado_15
+	a_Estado_16 [label="1 -> 1" color=green]
+	a -> a_Estado_16
+	b [label="Variable b"]
+	Raiz -> b
+	b_Estado_1 [label="0 -> 0" color=red]
+	b -> b_Estado_1
+	b_Estado_2 [label="0 -> 0" color=red]
+	b -> b_Estado_2
+	b_Estado_3 [label="0 -> 0" color=red]
+	b -> b_Estado_3
+	b_Estado_4 [label="0 -> 1" color=red]
+	b -> b_Estado_4
+	b_Estado_5 [label="1 -> 0" color=green]
+	b -> b_Estado_5
+	b_Estado_6 [label="1 -> 0" color=green]
+	b -> b_Estado_6
+	b_Estado_7 [label="1 -> 0" color=green]
+	b -> b_Estado_7
+	b_Estado_8 [label="1 -> 1" color=green]
+	b -> b_Estado_8
+	b_Estado_9 [label="0 -> 0" color=red]
+	b -> b_Estado_9
+	b_Estado_10 [label="0 -> 0" color=red]
+	b -> b_Estado_10
+	b_Estado_11 [label="0 -> 0" color=red]
+	b -> b_Estado_11
+	b_Estado_12 [label="0 -> 1" color=red]
+	b -> b_Estado_12
+	b_Estado_13 [label="1 -> 1" color=green]
+	b -> b_Estado_13
+	b_Estado_14 [label="1 -> 1" color=green]
+	b -> b_Estado_14
+	b_Estado_15 [label="1 -> 1" color=green]
+	b -> b_Estado_15
+	b_Estado_16 [label="1 -> 1" color=green]
+	b -> b_Estado_16
+	c [label="Variable c"]
+	Raiz -> c
+	c_Estado_1 [label="0 -> 0" color=red]
+	c -> c_Estado_1
+	c_Estado_2 [label="0 -> 0" color=red]
+	c -> c_Estado_2
+	c_Estado_3 [label="1 -> 0" color=green]
+	c -> c_Estado_3
+	c_Estado_4 [label="1 -> 1" color=green]
+	c -> c_Estado_4
+	c_Estado_5 [label="0 -> 0" color=red]
+	c -> c_Estado_5
+	c_Estado_6 [label="0 -> 0" color=red]
+	c -> c_Estado_6
+	c_Estado_7 [label="1 -> 0" color=green]
+	c -> c_Estado_7
+	c_Estado_8 [label="1 -> 1" color=green]
+	c -> c_Estado_8
+	c_Estado_9 [label="0 -> 0" color=red]
+	c -> c_Estado_9
+	c_Estado_10 [label="0 -> 0" color=red]
+	c -> c_Estado_10
+	c_Estado_11 [label="1 -> 0" color=green]
+	c -> c_Estado_11
+	c_Estado_12 [label="1 -> 1" color=green]
+	c -> c_Estado_12
+	c_Estado_13 [label="0 -> 1" color=red]
+	c -> c_Estado_13
+	c_Estado_14 [label="0 -> 1" color=red]
+	c -> c_Estado_14
+	c_Estado_15 [label="1 -> 1" color=green]
+	c -> c_Estado_15
+	c_Estado_16 [label="1 -> 1" color=green]
+	c -> c_Estado_16
+	d [label="Variable d"]
+	Raiz -> d
+	d_Estado_1 [label="0 -> 0" color=red]
+	d -> d_Estado_1
+	d_Estado_2 [label="1 -> 0" color=green]
+	d -> d_Estado_2
+	d_Estado_3 [label="0 -> 0" color=red]
+	d -> d_Estado_3
+	d_Estado_4 [label="1 -> 1" color=green]
+	d -> d_Estado_4
+	d_Estado_5 [label="0 -> 0" color=red]
+	d -> d_Estado_5
+	d_Estado_6 [label="1 -> 0" color=green]
+	d -> d_Estado_6
+	d_Estado_7 [label="0 -> 0" color=red]
+	d -> d_Estado_7
+	d_Estado_8 [label="1 -> 1" color=green]
+	d -> d_Estado_8
+	d_Estado_9 [label="0 -> 0" color=red]
+	d -> d_Estado_9
+	d_Estado_10 [label="1 -> 0" color=green]
+	d -> d_Estado_10
+	d_Estado_11 [label="0 -> 0" color=red]
+	d -> d_Estado_11
+	d_Estado_12 [label="1 -> 1" color=green]
+	d -> d_Estado_12
+	d_Estado_13 [label="0 -> 1" color=red]
+	d -> d_Estado_13
+	d_Estado_14 [label="1 -> 1" color=green]
+	d -> d_Estado_14
+	d_Estado_15 [label="0 -> 1" color=red]
+	d -> d_Estado_15
+	d_Estado_16 [label="1 -> 1" color=green]
+	d -> d_Estado_16
+}

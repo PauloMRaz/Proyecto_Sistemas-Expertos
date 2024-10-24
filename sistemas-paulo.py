@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 from graphviz import Digraph  # Asegúrate de tener instalado graphviz
 
 def procesar_texto(texto):
-    # Operadores booleanos
     operadores = {
         'y': '^',
         'o': 'v',
@@ -28,7 +27,6 @@ def procesar_texto(texto):
                 oraciones[variable] = oracion
                 variable_index += 1
 
-    # Construir la fórmula lógica
     expresion = ""
     variable_index = 0
     for parte in partes:
@@ -43,88 +41,67 @@ def procesar_texto(texto):
                 expresion += variable
                 variable_index += 1
 
-    # Mostrar las proposiciones y ecuación
     for letra, frase in oraciones.items():
         print(f"{letra}: {frase}")
     
     print("\nEcuación:")
     print(expresion)
 
-    # Crear tabla de verdad con visualización gráfica
     combinaciones, resultados = generar_tabla_verdad(oraciones, expresion)
-
-    # Crear el árbol de nodos basado en la tabla de verdad
-    generar_arbol_de_nodos(combinaciones, resultados, list(oraciones.keys()))
-
+    crear_imagen_arbol(combinaciones, resultados, list(oraciones.keys()))
 
 def generar_tabla_verdad(oraciones, expresion):
     variables = list(oraciones.keys())
-    combinaciones = list(itertools.product([False, True], repeat=len(variables)))
+    combinaciones = list(itertools.product([0, 1], repeat=len(variables)))  # Cambiar a 0 y 1
 
-    # Evaluación de la expresión para cada combinación
     resultados = []
     for combinacion in combinaciones:
         contexto = dict(zip(variables, combinacion))
-
-        # Reemplazar variables en la expresión con sus valores en 'contexto'
         expresion_eval = expresion
         for var, val in contexto.items():
             expresion_eval = expresion_eval.replace(var, str(val))
 
-        # Evaluar la expresión lógica
         resultado = eval(expresion_eval.replace('^', ' and ').replace('v', ' or '))
-        resultados.append(resultado)
+        resultados.append(1 if resultado else 0)  # Cambiar True/False a 1/0
 
-    # Crear un DataFrame de pandas para la tabla de verdad
     tabla_verdad = pd.DataFrame(combinaciones, columns=variables)
-    tabla_verdad[expresion] = resultados  # Usar la fórmula como título de la columna de resultado
-
-    # Graficar la tabla de estados como imagen
-    fig, ax = plt.subplots(figsize=(8, 4))  # Ajustar tamaño si es necesario
+    tabla_verdad[expresion] = resultados
+    fig, ax = plt.subplots(figsize=(8, 4))
     ax.axis('tight')
     ax.axis('off')
     tabla = ax.table(cellText=tabla_verdad.values,
                      colLabels=tabla_verdad.columns,
                      cellLoc='center', loc='center')
-    tabla.scale(1.2, 1.2)  # Ajustar escala si es necesario
+    tabla.scale(1.2, 1.2)
+    plt.savefig('tabla_verdad.png', bbox_inches='tight')
     plt.show()
 
     return combinaciones, resultados
 
+def crear_imagen_arbol(combinaciones, resultados, variables):
+    arbol = Digraph(format='png', graph_attr={'rankdir': 'TB'})
 
-def generar_arbol_de_nodos(combinaciones, resultados, variables):
-    # Crear el gráfico del árbol usando graphviz
-    arbol = Digraph(format='png', graph_attr={'rankdir': 'TB'})  # Orientación de arriba hacia abajo
-
-    # Crear un nodo raíz
+    # Crear el nodo raíz
     arbol.node('Raiz', 'Combinaciones')
 
-    # Conectamos el primer nivel basado en el valor de la primera variable
-    for i in range(len(variables)):
-        var = variables[i]
-        arbol.node(var, f"{var}")
+    # Construir el árbol jerárquico
+    for i, var in enumerate(variables):
+        # Crear un nodo para cada variable
+        arbol.node(var, f"Variable {var}")
         arbol.edge('Raiz', var)
 
-        # Agregar los nodos de las combinaciones para el valor verdadero
-        for comb in combinaciones:
-            if comb[i]:  # Si la variable es True
-                idx = combinaciones.index(comb)
-                arbol.node(f"Estado_{idx + 1}", 'y', color='green')  # Palomita verde
-                arbol.edge(var, f"Estado_{idx + 1}")
+        for idx, comb in enumerate(combinaciones):
+            estado = '1' if comb[i] else '0'  # '1' para verdadero y '0' para falso
+            resultado = resultados[idx]
+            resultado_str = '1' if resultado else '0'  # Resultado final de la expresión
+            nodo_estado = f"{var}_Estado_{idx + 1}"  # Nombre del nodo de estado
+            arbol.node(nodo_estado, f"{estado} -> {resultado_str}", color='green' if estado == '1' else 'red')
+            arbol.edge(var, nodo_estado)
 
-        # Agregar los nodos de las combinaciones para el valor falso
-        for comb in combinaciones:
-            if not comb[i]:  # Si la variable es False
-                idx = combinaciones.index(comb)
-                arbol.node(f"Estado_{idx + 1}", 'x', color='red')  # Equis roja
-                arbol.edge(var, f"Estado_{idx + 1}")
-
-    # Renderizar y mostrar el árbol
-    arbol.render('arbol_de_nodos', view=True)  # Esto genera y abre el archivo PNG del árbol
-
+    # Renderizar y guardar el árbol sin abrir
+    arbol.render('arbol_combinaciones', view=False)
 
 # Ejemplo de uso
 texto_entrada = "Hoy es lunes y está lloviendo, o voy al trabajo. y hay tráfico en la carretera"
 print(texto_entrada, "\n")
 procesar_texto(texto_entrada)
-
